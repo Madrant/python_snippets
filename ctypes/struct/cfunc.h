@@ -11,3 +11,5 @@ struct message_t
 typedef struct message_t message;
 
 int process(message &m);
+
+int process_array(message *message_array, int messages);
