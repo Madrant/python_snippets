@@ -6,9 +6,12 @@ extern "C" {
 
 #include "cfunc.h"
 
-int sum(int a, int b)
+int sum(int a, int b, int* ret_ptr)
 {
-    return a + b;
+    int result = a + b;
+
+    *ret_ptr = result;
+    return result;
 }
 
 void hello(const char *name)

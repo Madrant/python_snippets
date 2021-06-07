@@ -32,20 +32,25 @@ if __name__ == "__main__":
 
     c_lib = ctypes.CDLL(libname)
 
+    # 1
+    #
     # Define and call simple function:
     c_sum = c_lib.sum
-    c_sum.argtypes = [ctypes.c_int, ctypes.c_int]
+    c_sum.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.POINTER(ctypes.c_int)]
     c_sum.restype = ctypes.c_int
 
     # Input parameters treated as int by default
     # in other case use c_float() and etc conversions
     a = 1
     b = 2
+    c = ctypes.c_int(0)
 
     print("Calling csum(): %u %u" % (a, b))
-    result = c_sum(a, b)
-    print("csum result: %u" % result)
+    result = c_sum(a, b, ctypes.byref(c))
+    print("csum result: %u result by ptr: %u" % (result, c.value))
 
+    # 2
+    #
     # Define and call function that consumes 'const char*'
     c_hello = c_lib.hello
     c_hello.argtypes = [ctypes.c_char_p]

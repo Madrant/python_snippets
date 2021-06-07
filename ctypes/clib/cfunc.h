@@ -1,4 +1,4 @@
-int sum(int a, int b);
+int sum(int a, int b, int* ret_ptr);
 
 void hello(const char *name);
 
